@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!-- 
+    # Student Name: Adrian Nowak
+    # Student Number: 12018991
+    # Notes: XSD for XML
+    # Resources:
+    # http://www.w3schools.com/schema/default.asp
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <!--Check for "players"-->
+    <xs:element name="players">
+        <xs:complexType>
+            <!--"sequence" - must appear in a sequence-->
+            <xs:sequence>
+                <!--Check for "player" inside of "players", have at least 1-->
+                <!--"name" specifies a name for the element-->
+                <xs:element name="player" maxOccurs="unbounded" minOccurs="1">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <!--Check for player name.-->
+                            <xs:element name="playerName" maxOccurs="1" minOccurs="1">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <!--Check for player wikipedia link.-->
+                                            <xs:attribute name="wikiLink" type="xs:anyURI"/>  
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <!--Check for champion years-->
+                            <xs:element name="championYears" maxOccurs="1" minOccurs="1">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <!--Check for first years - must be one.-->
+                                        <xs:element name="firstYears" minOccurs="1" maxOccurs="1">  
+                                        </xs:element>
+                                        
+                                        <!--Check for second years - zero or one.-->
+                                        <xs:element name="secondYears" minOccurs="0" maxOccurs="1">  
+                                        </xs:element>
+                                        
+                                        <!--Check for third years - zero or one.-->
+                                        <xs:element name="thirdYears" minOccurs="0" maxOccurs="1">  
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <!--Check for countries-->
+                            <xs:element name="countries" maxOccurs="1" minOccurs="1">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <!-- Check for country - at least one, max three -->
+                                        <xs:element name="country" maxOccurs="3" minOccurs="1">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:string">
+                                                        <!--Check for country wikipedia link.-->
+                                                        <xs:attribute name="wikiLink" type="xs:anyURI"/>
+                                                        <xs:attribute name="flag" type="xs:anyURI"/>
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
